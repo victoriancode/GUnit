@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Farm Chat</title>
+
+<style>
+body {
+  background:#111;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+
+/* Burner phone frame */
+.phone {
+  width:360px;
+  height:640px;
+  background:#000;
+  border-radius:24px;
+  box-shadow:0 0 30px rgba(0,0,0,.8);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:4px solid #222;
+}
+
+/* Header */
+.header {
+  background:#075E54;
+  color:#fff;
+  padding:12px;
+  text-align:center;
+  font-weight:600;
+  font-size:16px;
+}
+
+/* Chat area */
+.chat {
+  flex:1;
+  background:#ece5dd;
+  padding:10px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* Messages */
+.msg {
+  max-width:75%;
+  padding:8px 10px;
+  border-radius:8px;
+  font-size:14px;
+  line-height:1.3;
+}
+
+.worker {
+  background:#fff;
+  align-self:flex-end;
+  border-top-right-radius:0;
+}
+
+.farmer {
+  background:#dcf8c6;
+  align-self:flex-start;
+  border-top-left-radius:0;
+}
+
+/* Question buttons */
+.footer {
+  background:#f0f0f0;
+  padding:8px;
+  border-top:1px solid #ccc;
+}
+
+.question {
+  background:#fff;
+  border:1px solid #ccc;
+  border-radius:6px;
+  padding:6px;
+  margin-bottom:6px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.question:active {
+  background:#ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+  <div class="header">
+    👨🏾‍🌾 Experienced Farmer
+  </div>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="footer" id="questions"></div>
+</div>
+
+<script>
+fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
+    const chat = document.getElementById("chat");
+    const questions = document.getElementById("questions");
+
+    data.questions.forEach(q => {
+      const btn = document.createElement("div");
+      btn.className = "question";
+      btn.innerText = q.ask;
+
+      btn.onclick = () => {
+        // Worker message
+        const workerMsg = document.createElement("div");
+        workerMsg.className = "msg worker";
+        workerMsg.innerText = q.ask;
+        chat.appendChild(workerMsg);
+
+        // Farmer reply
+        setTimeout(() => {
+          const farmerMsg = document.createElement("div");
+          farmerMsg.className = "msg farmer";
+          farmerMsg.innerText = q.answer;
+          chat.appendChild(farmerMsg);
+          chat.scrollTop = chat.scrollHeight;
+        }, 400);
+      };
+
+      questions.appendChild(btn);
+    });
+  });
+</script>
+
+</body>
+</html>
