@@ -1,24 +1,100 @@
 {
+  "entities": {
+    "goat": {
+      "needs": ["feed", "water", "shelter"],
+      "produces": "milk",
+      "healthRisks": ["worms", "infection", "stress"]
+    },
+
+    "feed": {
+      "types": ["roughage", "concentrates"],
+      "rules": [
+        "Feed must be fresh",
+        "Avoid mouldy or spoiled feed"
+      ]
+    },
+
+    "water": {
+      "rules": [
+        "Water must be clean",
+        "Water must always be available"
+      ]
+    },
+
+    "shelter": {
+      "rules": [
+        "Shelter must be dry",
+        "Shelter must be well ventilated",
+        "Shelter must be cleaned regularly"
+      ]
+    }
+  },
+
+  "symptoms": {
+    "not_eating": {
+      "entity": "goat",
+      "possibleCauses": [
+        "dirty_water",
+        "spoiled_feed",
+        "disease",
+        "stress"
+      ],
+      "advice": [
+        "Check water cleanliness and availability",
+        "Inspect feed for mould or bad smell",
+        "Observe goat for illness signs",
+        "Reduce noise and overcrowding"
+      ]
+    },
+
+    "low_milk_production": {
+      "entity": "goat",
+      "possibleCauses": [
+        "poor_feed",
+        "stress",
+        "illness",
+        "dirty_milking_area"
+      ],
+      "advice": [
+        "Improve feed quality",
+        "Reduce stress during milking",
+        "Maintain clean milking practices"
+      ]
+    }
+  },
+
+  "actions": {
+    "clean_shelter": {
+      "frequency": "Daily spot clean, weekly deep clean",
+      "benefit": "Prevents disease and improves milk production"
+    },
+
+    "isolate_sick_goat": {
+      "when": "Immediately when sickness is noticed",
+      "how": [
+        "Move goat to separate pen",
+        "Use separate feed and water containers"
+      ],
+      "benefit": "Prevents disease spread"
+    }
+  },
+
   "questions": [
     {
-      "ask": "My goats are not eating today. What should I check?",
-      "answer": "First check water. Goats stop eating if water is dirty or finished. Then check if feed smells sour or mouldy. Also look for signs of sickness like droopy ears or no movement."
+      "ask": "My goat is not eating. What should I do?",
+      "symptom": "not_eating"
+    },
+    {
+      "ask": "Why is my goat giving less milk?",
+      "symptom": "low_milk_production"
     },
     {
       "ask": "How often must I clean the goat shelter?",
-      "answer": "Remove wet bedding every day if possible. Do a full clean once a week. Dirty shelters cause worms, coughing, and hoof problems."
+      "action": "clean_shelter"
     },
     {
-      "ask": "When should I separate sick animals?",
-      "answer": "As soon as you notice sickness. Keep them away from the rest to stop spreading disease. Use separate water and feeding buckets."
-    },
-    {
-      "ask": "What is the cheapest feed for goats?",
-      "answer": "Natural browsing is best. Use dry grass, leaves, and crop leftovers. Supplement with maize only if goats are thin. Do not overfeed grain."
-    },
-    {
-      "ask": "How do I know if a goat is ready to breed?",
-      "answer": "Female goats show restlessness, tail wagging, and loud bleating. Best breeding age is after 8 months and good body weight."
+      "ask": "When should I separate a sick goat?",
+      "action": "isolate_sick_goat"
     }
   ]
 }
