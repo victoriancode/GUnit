@@ -1,1 +1,24 @@
-
+{
+  "questions": [
+    {
+      "ask": "My goats are not eating today. What should I check?",
+      "answer": "First check water. Goats stop eating if water is dirty or finished. Then check if feed smells sour or mouldy. Also look for signs of sickness like droopy ears or no movement."
+    },
+    {
+      "ask": "How often must I clean the goat shelter?",
+      "answer": "Remove wet bedding every day if possible. Do a full clean once a week. Dirty shelters cause worms, coughing, and hoof problems."
+    },
+    {
+      "ask": "When should I separate sick animals?",
+      "answer": "As soon as you notice sickness. Keep them away from the rest to stop spreading disease. Use separate water and feeding buckets."
+    },
+    {
+      "ask": "What is the cheapest feed for goats?",
+      "answer": "Natural browsing is best. Use dry grass, leaves, and crop leftovers. Supplement with maize only if goats are thin. Do not overfeed grain."
+    },
+    {
+      "ask": "How do I know if a goat is ready to breed?",
+      "answer": "Female goats show restlessness, tail wagging, and loud bleating. Best breeding age is after 8 months and good body weight."
+    }
+  ]
+}
