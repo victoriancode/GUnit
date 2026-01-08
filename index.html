@@ -3,93 +3,121 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Farm Chat</title>
+<title>GOATFarmer</title>
 
 <style>
 body {
-  background:#111;
+  margin: 0;
+  height: 100vh;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  margin:0;
 }
 
-/* Burner phone frame */
 .phone {
-  width:360px;
-  height:640px;
-  background:#000;
-  border-radius:24px;
-  box-shadow:0 0 30px rgba(0,0,0,.8);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  border:4px solid #222;
+  width: 360px;
+  height: 640px;
+  background: #000;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 0 35px rgba(0,0,0,.9);
+  display: flex;
+  flex-direction: column;
+  border: 4px solid #222;
 }
 
-/* Header */
 .header {
-  background:#075E54;
-  color:#fff;
-  padding:12px;
-  text-align:center;
-  font-weight:600;
-  font-size:16px;
+  background: #075E54;
+  color: #fff;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Chat area */
+.header button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.screen {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+}
+
+.screen.active {
+  display: flex;
+}
+
 .chat {
-  flex:1;
-  background:#ece5dd;
-  padding:10px;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+  flex: 1;
+  background: #ece5dd;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Messages */
 .msg {
-  max-width:75%;
-  padding:8px 10px;
-  border-radius:8px;
-  font-size:14px;
-  line-height:1.3;
+  max-width: 78%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: pre-line;
 }
 
 .worker {
-  background:#fff;
-  align-self:flex-end;
-  border-top-right-radius:0;
+  background: #fff;
+  align-self: flex-end;
+  border-top-right-radius: 0;
 }
 
 .farmer {
-  background:#dcf8c6;
-  align-self:flex-start;
-  border-top-left-radius:0;
+  background: #dcf8c6;
+  align-self: flex-start;
+  border-top-left-radius: 0;
 }
 
-/* Question buttons */
 .footer {
-  background:#f0f0f0;
-  padding:8px;
-  border-top:1px solid #ccc;
+  background: #f0f0f0;
+  padding: 8px;
+  border-top: 1px solid #ccc;
 }
 
 .question {
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:6px;
-  padding:6px;
-  margin-bottom:6px;
-  font-size:13px;
-  cursor:pointer;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .question:active {
-  background:#ddd;
+  background: #ddd;
+}
+
+/* About screen */
+.about {
+  background: #fff;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-y: auto;
+}
+.about h2 {
+  margin-top: 0;
 }
 </style>
 </head>
@@ -98,45 +126,125 @@ body {
 
 <div class="phone">
   <div class="header">
-    👨🏾‍🌾 Experienced Farmer
+    <span>🐐 GOATFarmer</span>
+    <button onclick="showAbout()">About</button>
   </div>
 
-  <div class="chat" id="chat"></div>
+  <!-- Chat Screen -->
+  <div class="screen active" id="chatScreen">
+    <div class="chat" id="chat"></div>
+    <div class="footer" id="questions"></div>
+  </div>
 
-  <div class="footer" id="questions"></div>
+  <!-- About Screen -->
+  <div class="screen" id="aboutScreen">
+    <div class="about">
+      <h2>About GOATFarmer</h2>
+
+      <p>
+        <strong>GOATFarmer</strong> is an offline-first agricultural assistant
+        designed for small-scale and subsistence goat farmers.
+      </p>
+
+      <p>
+        It captures experienced goat-farming knowledge in a structured
+        <strong>Knowledge Graph</strong> and delivers practical advice through
+        a low-end, WhatsApp-style interface.
+      </p>
+
+      <h3>Why this matters</h3>
+      <ul>
+        <li>Many farmers work with limited or no internet access</li>
+        <li>Critical farming knowledge is often informal and unstructured</li>
+        <li>Early decisions prevent animal loss and low productivity</li>
+      </ul>
+
+      <h3>How it works</h3>
+      <ul>
+        <li>Farming knowledge is stored as structured JSON</li>
+        <li>Questions map to symptoms or actions</li>
+        <li>Advice is assembled through graph reasoning</li>
+        <li>No AI model or cloud service is required</li>
+      </ul>
+
+      <p>
+        This prototype demonstrates how applied AI techniques can be used
+        to support real-world decision-making in low-resource environments.
+      </p>
+
+      <button onclick="showChat()">⬅ Back to Chat</button>
+    </div>
+  </div>
 </div>
 
 <script>
+function showAbout() {
+  document.getElementById("chatScreen").classList.remove("active");
+  document.getElementById("aboutScreen").classList.add("active");
+}
+
+function showChat() {
+  document.getElementById("aboutScreen").classList.remove("active");
+  document.getElementById("chatScreen").classList.add("active");
+}
+
 fetch("data.json")
   .then(res => res.json())
-  .then(data => {
+  .then(graph => {
     const chat = document.getElementById("chat");
     const questions = document.getElementById("questions");
 
-    data.questions.forEach(q => {
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.className = "msg " + sender;
+      msg.innerText = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function buildSymptomResponse(key) {
+      const s = graph.symptoms[key];
+      let r = "Possible causes:\n";
+      s.possibleCauses.forEach(c => r += "• " + c.replace(/_/g," ") + "\n");
+      r += "\nWhat to do:\n";
+      s.advice.forEach(a => r += "• " + a + "\n");
+      return r;
+    }
+
+    function buildActionResponse(key) {
+      const a = graph.actions[key];
+      let r = "";
+      if (a.when) r += "When:\n• " + a.when + "\n\n";
+      if (a.frequency) r += "How often:\n• " + a.frequency + "\n\n";
+      if (a.how) {
+        r += "How:\n";
+        a.how.forEach(h => r += "• " + h + "\n");
+        r += "\n";
+      }
+      if (a.benefit) r += "Why:\n• " + a.benefit;
+      return r;
+    }
+
+    graph.questions.forEach(q => {
       const btn = document.createElement("div");
       btn.className = "question";
       btn.innerText = q.ask;
-
       btn.onclick = () => {
-        // Worker message
-        const workerMsg = document.createElement("div");
-        workerMsg.className = "msg worker";
-        workerMsg.innerText = q.ask;
-        chat.appendChild(workerMsg);
-
-        // Farmer reply
+        addMessage(q.ask, "worker");
         setTimeout(() => {
-          const farmerMsg = document.createElement("div");
-          farmerMsg.className = "msg farmer";
-          farmerMsg.innerText = q.answer;
-          chat.appendChild(farmerMsg);
-          chat.scrollTop = chat.scrollHeight;
+          let reply = q.symptom
+            ? buildSymptomResponse(q.symptom)
+            : buildActionResponse(q.action);
+          addMessage(reply, "farmer");
         }, 400);
       };
-
       questions.appendChild(btn);
     });
+
+    addMessage(
+      "I can help with feeding, health, shelter and milk production.\nTap a question below.",
+      "farmer"
+    );
   });
 </script>
 
