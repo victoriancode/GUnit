@@ -95,6 +95,6 @@
     {
       "ask": "When should I separate a sick goat?",
       "action": "isolate_sick_goat"
-    },
-  ],
+    }
+  ]
 }
