@@ -96,28 +96,5 @@
       "ask": "When should I separate a sick goat?",
       "action": "isolate_sick_goat"
     },
-    "cheeses": {
-      "fresh_cheese": {
-        "milk_min": 1,
-        "milk_max": 5,
-        "time_hours": 6,
-        "storage_days": 3,
-        "best_for": ["fast", "small_batch"]
-      },
-      "chevre": {
-        "milk_min": 2,
-        "milk_max": 10,
-        "time_hours": 24,
-        "storage_days": 10,
-        "best_for": ["selling", "daily"]
-      },
-      "hard_cheese": {
-        "milk_min": 10,
-        "milk_max": 30,
-        "time_hours": 1440,
-        "storage_days": 180,
-        "best_for": ["long_storage"]
-      }
-    }
-  ]
+  ],
 }
